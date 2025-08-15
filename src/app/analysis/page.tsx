@@ -1,6 +1,5 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { 
@@ -34,8 +33,6 @@ interface NarratorAnalysis {
 }
 
 export default function AnalysisPage() {
-  const searchParams = useSearchParams()
-  const analysisMode = searchParams?.get('mode') || 'both'
 
   const [hadithText, setHadithText] = useState('')
   const [extractionData, setExtractionData] = useState<ExtractNarratorsResponse | null>(null)
@@ -163,8 +160,8 @@ export default function AnalysisPage() {
             Back to Home
           </Link>
           <h1 className="text-3xl font-bold font-lora text-deep-blue mb-2 tracking-wide">Hadith Chain Analysis</h1>
-          <p className="text-scholar-gray-600 font-inter">Analysis mode: <span className="font-medium text-deep-blue">{analysisMode}</span></p>
-          
+          <p className="text-scholar-gray-600 font-inter">Analysis mode: <span className="font-medium text-deep-blue">Sunni</span></p>
+
           {/* Decorative divider */}
           <div className="flex justify-start mt-6">
             <div className="w-16 h-1 bg-gradient-to-r from-warm-tan to-transparent rounded-full"></div>
