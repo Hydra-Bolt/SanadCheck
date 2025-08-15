@@ -1,0 +1,925 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
+
+/* Custom CSS Variables - Scholarly & Calming Palette */
+:root {
+  /* Core Color Palette */
+  --color-primary: #1e3a8a;          /* Deep blue - wisdom & trust */
+  --color-primary-light: #3b82f6;     /* Lighter blue for accents */
+  --color-primary-dark: #172554;      /* Darker blue for depth */
+  --color-secondary: #1f2937;         /* Deep charcoal */
+  --color-accent: #059669;            /* Muted green - growth & harmony */
+  
+  /* Warm Scholar Tones */
+  --color-warm-tan: #d2b48c;          /* Classic parchment */
+  --color-warm-tan-light: #f5f0e8;    /* Soft cream */
+  --color-warm-tan-dark: #8b6914;     /* Deep gold */
+  --color-amber: #d97706;             /* Warm amber for highlights */
+  --color-error: #dc2626;             /* Muted red for errors */
+  
+  /* Background & Surface Colors */
+  --color-background: #fefefe;        /* Pure white with warmth */
+  --color-background-secondary: #f8fafc; /* Light grey-blue */
+  --color-background-tertiary: #f1f5f9;  /* Softer grey */
+  --color-paper: #fffef7;             /* Warm paper tone */
+  --color-surface: #ffffff;           /* Card/surface background */
+  --color-border: #e5e7eb;            /* Default border color */
+  
+  /* Text Colors */
+  --color-text-primary: #1f2937;      /* Dark charcoal */
+  --color-text-secondary: #374151;     /* Medium grey */
+  --color-text-muted: #6b7280;        /* Light grey */
+  
+  /* Shadows with Scholarly Warmth */
+  --shadow-soft: 0 1px 3px 0 rgba(30, 58, 138, 0.1), 0 1px 2px 0 rgba(30, 58, 138, 0.06);
+  --shadow-medium: 0 4px 6px -1px rgba(30, 58, 138, 0.1), 0 2px 4px -1px rgba(30, 58, 138, 0.06);
+  --shadow-large: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 0 4px 6px -2px rgba(30, 58, 138, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(30, 58, 138, 0.1), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+  --shadow-scholarly: 0 8px 32px rgba(30, 58, 138, 0.12), 0 2px 8px rgba(30, 58, 138, 0.08);
+  --shadow-elegant: 0 12px 40px rgba(30, 58, 138, 0.15), 0 4px 16px rgba(30, 58, 138, 0.1);
+  
+  /* Geometric Pattern Variables */
+  --pattern-primary: rgba(30, 58, 138, 0.015);
+  --pattern-secondary: rgba(210, 180, 140, 0.05);
+  --pattern-accent: rgba(5, 150, 105, 0.02);
+}
+
+/* Light theme (default) */
+:root,
+[data-theme="light"] {
+  /* Light theme uses the root variables defined above */
+}
+
+/* Dark theme - Complete implementation */
+[data-theme="dark"] {
+  /* Core Color Palette - Dark Mode */
+  --color-primary: #60a5fa;          /* Softer blue for dark backgrounds */
+  --color-primary-light: #93c5fd;     /* Lighter blue for accents */
+  --color-primary-dark: #3b82f6;      /* Deeper blue for contrast */
+  --color-secondary: #e5e7eb;         /* Light grey for text */
+  --color-accent: #34d399;            /* Brighter green for dark mode visibility */
+  
+  /* Warm Scholar Tones - Dark Mode */
+  --color-warm-tan: #92400e;          /* Darker amber tone */
+  --color-warm-tan-light: #1f1611;    /* Dark warm background */
+  --color-warm-tan-dark: #fbbf24;     /* Bright gold for highlights */
+  --color-amber: #f59e0b;             /* Brighter amber for visibility */
+  --color-error: #f87171;             /* Softer red for dark mode */
+  
+  /* Background & Surface Colors - Dark Mode */
+  --color-background: #0f1419;        /* Deep dark blue-grey */
+  --color-background-secondary: #1f2937; /* Medium dark grey */
+  --color-background-tertiary: #374151;  /* Lighter dark grey */
+  --color-paper: #1a1f2e;             /* Dark paper tone with slight warmth */
+  --color-surface: #1f2937;           /* Card/surface background */
+  --color-border: #374151;            /* Dark mode border color */
+  
+  /* Text Colors - Dark Mode */
+  --color-text-primary: #f9fafb;      /* Almost white for primary text */
+  --color-text-secondary: #e5e7eb;    /* Light grey for secondary text */
+  --color-text-muted: #9ca3af;        /* Medium grey for muted text */
+  
+  /* Dark Mode Shadows */
+  --shadow-soft: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-scholarly: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-elegant: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+  
+  /* Dark Mode Pattern Variables */
+  --pattern-primary: rgba(96, 165, 250, 0.02);
+  --pattern-secondary: rgba(146, 64, 14, 0.05);
+  --pattern-accent: rgba(52, 211, 153, 0.02);
+}
+
+/* Base styles with enhanced typography */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv03', 'cv04', 'cv11';
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Enhanced Typography Classes */
+.font-serif {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.font-serif-bold {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-scholarly {
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.text-scholarly-muted {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.text-elegant {
+  font-family: 'Lora', Georgia, serif;
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+/* Headings with scholarly elegance */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 0.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+/* Blockquotes with academic styling */
+blockquote {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  border-left: 4px solid var(--color-warm-tan);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  background: linear-gradient(135deg, var(--color-warm-tan-light) 0%, transparent 100%);
+  padding: 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Custom component classes - Enhanced Scholarly Design */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-deep-blue-900 to-deep-blue-800 hover:from-deep-blue-800 hover:to-deep-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-deep-blue-600 focus:ring-offset-2;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  
+  .btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    @apply font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--color-background-secondary);
+  }
+  
+  .btn-secondary:focus {
+    --tw-ring-color: var(--color-primary);
+  }
+  
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .scholarly-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .card-elegant {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5;
+    box-shadow: var(--shadow-large);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-elegant::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, var(--pattern-primary) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, var(--pattern-secondary) 1px, transparent 1px);
+    background-size: 60px 60px, 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  .input-field {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply w-full px-4 py-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200;
+    font-family: 'Inter', sans-serif;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .scholarly-input {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply w-full px-4 py-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200;
+    font-family: 'Inter', sans-serif;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .input-field:focus {
+    --tw-ring-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-medium), 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .scholarly-input:focus {
+    --tw-ring-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-medium), 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .input-field::placeholder,
+  .scholarly-input::placeholder {
+    color: var(--color-text-muted);
+  }
+  
+  .textarea-field {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    @apply w-full px-4 py-3 rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 resize-none;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .textarea-field:focus {
+    --tw-ring-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-medium), 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .textarea-field::placeholder {
+    color: var(--color-text-muted);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    @apply bg-clip-text text-transparent;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  .gradient-text-warm {
+    background: linear-gradient(135deg, var(--color-warm-tan-dark) 0%, var(--color-amber) 100%);
+    @apply bg-clip-text text-transparent;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+  }
+  
+  /* Islamic Geometric Patterns */
+  .pattern-bg {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(30, 58, 138, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  .pattern-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 12px 12px, rgba(210, 180, 140, 0.04) 0.5px, transparent 0.5px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  
+  .pattern-islamic-stars {
+    background-image: 
+      radial-gradient(circle at 50% 50%, var(--pattern-primary) 2px, transparent 2px),
+      radial-gradient(circle at 25% 25%, var(--pattern-secondary) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, var(--pattern-accent) 1px, transparent 1px);
+    background-size: 40px 40px, 20px 20px, 30px 30px;
+    background-position: 0 0, 10px 10px, 5px 5px;
+  }
+  
+  .pattern-hexagonal {
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 35px, var(--pattern-primary) 35px, var(--pattern-primary) 36px),
+      repeating-linear-gradient(60deg, transparent, transparent 35px, var(--pattern-secondary) 35px, var(--pattern-secondary) 36px),
+      repeating-linear-gradient(-60deg, transparent, transparent 35px, var(--pattern-accent) 35px, var(--pattern-accent) 36px);
+  }
+  
+  .divider-pattern {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      var(--color-warm-tan) 25%, 
+      var(--color-primary) 50%, 
+      var(--color-warm-tan) 75%, 
+      transparent 100%
+    );
+    height: 2px;
+    position: relative;
+  }
+  
+  .divider-pattern::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 2px;
+  }
+  
+  .divider-ornate {
+    background-image: 
+      repeating-linear-gradient(45deg, transparent 0px, transparent 3px, var(--color-warm-tan) 3px, var(--color-warm-tan) 6px),
+      repeating-linear-gradient(-45deg, transparent 0px, transparent 3px, var(--color-primary) 3px, var(--color-primary) 6px);
+    background-size: 12px 12px;
+    height: 3px;
+    opacity: 0.6;
+  }
+  
+  /* Section styling with subtle patterns */
+  .section-scholarly {
+    position: relative;
+    padding: 3rem 0;
+  }
+  
+  .section-scholarly::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, var(--pattern-primary) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, var(--pattern-secondary) 1px, transparent 1px),
+      radial-gradient(circle at 40% 40%, var(--pattern-accent) 0.5px, transparent 0.5px);
+    background-size: 80px 80px, 60px 60px, 40px 40px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  /* Paper-like background for content areas */
+  .bg-paper {
+    background: var(--color-paper);
+    background-image: 
+      linear-gradient(rgba(210, 180, 140, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(210, 180, 140, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .scholarly-card {
+    @apply bg-white rounded-xl border border-scholar-gray-100 p-6 transition-all duration-300 hover:shadow-lg;
+    box-shadow: var(--shadow-medium);
+    background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+  }
+  
+  .scholarly-input {
+    @apply w-full px-4 py-3 rounded-lg border border-scholar-gray-300 focus:ring-2 focus:ring-deep-blue-600 focus:border-transparent transition-all duration-200 bg-white;
+    font-family: 'Inter', sans-serif;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .scholarly-input:focus {
+    box-shadow: var(--shadow-medium), 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Scholarly Button - Enhanced with Academic Elegance */
+  .scholarly-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+    min-height: 48px;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    box-shadow: var(--shadow-medium);
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Primary Scholarly Button */
+  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline) {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    border-color: var(--color-primary-dark);
+  }
+  
+  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):hover {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+  }
+  
+  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):focus {
+    box-shadow: var(--shadow-large), 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Secondary Scholarly Button */
+  .scholarly-button.scholarly-button-secondary {
+    background: linear-gradient(135deg, white 0%, var(--color-warm-tan-light) 100%);
+    color: var(--color-text-primary);
+    border-color: var(--color-warm-tan);
+  }
+  
+  .scholarly-button.scholarly-button-secondary:hover {
+    background: linear-gradient(135deg, var(--color-warm-tan-light) 0%, white 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+    color: var(--color-primary);
+  }
+  
+  .scholarly-button.scholarly-button-secondary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .scholarly-button.scholarly-button-secondary:focus {
+    box-shadow: var(--shadow-large), 0 0 0 3px rgba(210, 180, 140, 0.3);
+  }
+  
+  /* Outline Scholarly Button */
+  .scholarly-button.scholarly-button-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+  
+  .scholarly-button.scholarly-button-outline:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+  }
+  
+  .scholarly-button.scholarly-button-outline:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .scholarly-button.scholarly-button-outline:focus {
+    box-shadow: var(--shadow-large), 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* Subtle scholarly pattern overlay */
+  .scholarly-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px, 30px 30px;
+    opacity: 0.6;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  
+  /* Disabled state */
+  .scholarly-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    background: var(--color-text-muted) !important;
+    color: white !important;
+    border-color: var(--color-text-muted) !important;
+  }
+  
+  .scholarly-button:disabled:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-soft) !important;
+  }
+  
+  /* Size variations */
+  .scholarly-button.scholarly-button-sm {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    min-height: 36px;
+  }
+  
+  .scholarly-button.scholarly-button-lg {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+    min-height: 56px;
+  }
+  
+  .scholarly-button.scholarly-button-xl {
+    padding: 20px 40px;
+    font-size: 1.25rem;
+    min-height: 64px;
+  }
+  
+  /* Loading state */
+  .scholarly-button.scholarly-button-loading {
+    color: transparent !important;
+    pointer-events: none;
+  }
+  
+  .scholarly-button.scholarly-button-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Icon spacing */
+  .scholarly-button svg {
+    margin-right: 8px;
+    margin-left: -2px;
+    flex-shrink: 0;
+  }
+  
+  .scholarly-button svg:last-child:first-child {
+    margin: 0;
+  }
+}
+
+/* Animation utilities with scholarly elegance */
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-text-reveal {
+    animation: textReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Staggered animations for lists */
+  .animate-stagger-1 { animation-delay: 0.1s; }
+  .animate-stagger-2 { animation-delay: 0.2s; }
+  .animate-stagger-3 { animation-delay: 0.3s; }
+  .animate-stagger-4 { animation-delay: 0.4s; }
+  .animate-stagger-5 { animation-delay: 0.5s; }
+  .animate-stagger-6 { animation-delay: 0.6s; }
+}
+
+/* Enhanced Keyframe animations with scholarly elegance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    letter-spacing: 0.1em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: normal;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes gentleGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(30, 58, 138, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(30, 58, 138, 0.4);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced custom scrollbar with scholarly styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-warm-tan) 0%, var(--color-primary) 100%);
+  border-radius: 5px;
+  border: 1px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-warm-tan-dark) 0%, var(--color-primary-dark) 100%);
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(210, 180, 140, 0.3);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background-color: rgba(210, 180, 140, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* Enhanced focus styles for accessibility */
+.focus-visible:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced button focus */
+button:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Link styling with scholarly appearance */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Elegant link underline effect */
+.link-elegant {
+  position: relative;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-elegant::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-warm-tan));
+  transition: width 0.3s ease;
+}
+
+.link-elegant:hover::after {
+  width: 100%;
+}
+
+.link-elegant:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  .card-elegant {
+    padding: 1.5rem;
+  }
+  
+  blockquote {
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .card, .card-elegant {
+    padding: 1rem;
+  }
+}
+
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+  .pattern-islamic-stars,
+  .pattern-hexagonal,
+  .pattern-bg {
+    opacity: 0.7;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
