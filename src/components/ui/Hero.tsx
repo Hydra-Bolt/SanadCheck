@@ -11,7 +11,7 @@ interface HeroProps {
   subtitle: string
   primaryAction?: {
     text: string
-    onClick: () => void
+    href: string
   }
   secondaryAction?: {
     text: string
@@ -59,7 +59,7 @@ export default function Hero({
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-stagger-4">
             {primaryAction && (
               <Button
-                onClick={primaryAction.onClick}
+                onClick={() => window.location.href = primaryAction.href}
                 variant="primary"
                 icon={ArrowRightIcon}
                 iconPosition="right"

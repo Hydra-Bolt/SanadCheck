@@ -11,14 +11,8 @@ import {
   Button 
 } from '@/components/ui'
 import { FEATURES, STEPS } from '@/constants/homepage'
-import { useScroll } from '@/hooks/useScroll'
 
 export default function HomePage() {
-  const { scrollTo } = useScroll()
-
-  const handleAnalysisClick = () => {
-    scrollTo('analysis-tool')
-  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -29,7 +23,8 @@ export default function HomePage() {
         icon={BookOpenIcon}
         primaryAction={{
           text: "Try Analysis Tool",
-          onClick: handleAnalysisClick
+          href: "/analysis",
+          
         }}
         secondaryAction={{
           text: "Learn Methodology",
@@ -85,7 +80,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                onClick={handleAnalysisClick}
+                onClick={() => window.location.href = "/analysis"}
                 variant="cta"
                 size="lg"
               >
