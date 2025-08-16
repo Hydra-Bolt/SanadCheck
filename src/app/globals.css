@@ -766,6 +766,16 @@ blockquote {
   }
 }
 
+/* Arabic Calligraphy Flashlight Effect */
+@keyframes drift {
+  from {
+    transform: translateX(0px) translateY(0px);
+  }
+  to {
+    transform: translateX(-100px) translateY(20px);
+  }
+}
+
 /* Enhanced custom scrollbar with scholarly styling */
 ::-webkit-scrollbar {
   width: 10px;

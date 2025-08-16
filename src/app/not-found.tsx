@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ExclamationTriangleIcon, HomeIcon } from '@heroicons/react/24/outline'
+import { Button } from '@/components/ui'
 
 export default function NotFound() {
   return (
@@ -19,9 +20,15 @@ export default function NotFound() {
         </p>
         
         <div className="space-y-4">
-          <Link href="/" className="btn-primary inline-flex items-center">
-            <HomeIcon className="h-5 w-5 mr-2" />
-            Return Home
+          <Link href="/">
+            <Button 
+              variant="primary" 
+              icon={HomeIcon}
+              iconPosition="left"
+              fullWidth
+            >
+              Return Home
+            </Button>
           </Link>
           
           <div className="text-sm text-gray-500">
