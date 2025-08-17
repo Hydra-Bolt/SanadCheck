@@ -23,9 +23,9 @@ export default function LoadingState({
 
   return (
     <div className="flex items-center justify-center py-8">
-      <div className={`animate-spin rounded-full border-b-2 border-deep-blue ${sizeClasses[size]}`}></div>
+      <div className={`animate-spin rounded-full border-b-2 border-deep-blue dark:border-blue-400 ${sizeClasses[size]}`}></div>
       {message && (
-        <span className="ml-3 text-scholar-gray-600 font-inter">{message}</span>
+        <span className="ml-3 text-scholar-gray-600 dark:text-gray-400 font-inter">{message}</span>
       )}
     </div>
   )

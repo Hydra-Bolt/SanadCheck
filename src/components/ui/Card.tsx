@@ -14,9 +14,9 @@ const paddingClasses = {
 }
 
 const variantClasses = {
-  default: 'bg-white border border-gray-200 shadow-sm',
-  scholarly: 'bg-white border border-sage-200 scholarly-card',
-  gradient: 'bg-gradient-to-br from-white to-sage-25 border border-sage-200'
+  default: 'bg-white dark:bg-scholar-gray-800 border border-scholar-gray-200 dark:border-scholar-gray-600 shadow-soft dark:shadow-xl',
+  scholarly: 'bg-white dark:bg-scholar-gray-800 border border-sage-200 dark:border-scholar-gray-600 shadow-scholarly dark:shadow-xl scholarly-card',
+  gradient: 'bg-gradient-to-br from-white to-sage-25 dark:from-scholar-gray-800 dark:to-scholar-gray-700 border border-sage-200 dark:border-scholar-gray-600 shadow-elegant dark:shadow-xl'
 }
 
 export default function Card({ 

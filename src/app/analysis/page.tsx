@@ -155,16 +155,16 @@ export default function AnalysisPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-scholar-cream via-white to-sage-50 pattern-geometric-subtle py-12">
+    <div className="min-h-screen bg-gradient-to-br from-scholar-cream via-white to-sage-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 pattern-geometric-subtle py-12 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <Link href="/" className="inline-flex items-center text-deep-blue hover:text-deep-blue-dark mb-4 font-inter transition-colors duration-200">
+          <Link href="/" className="inline-flex items-center text-deep-blue dark:text-blue-400 hover:text-deep-blue-dark dark:hover:text-blue-300 mb-4 font-inter transition-colors duration-200">
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
-          <h1 className="text-3xl font-bold font-lora text-deep-blue mb-2 tracking-wide">Hadith Chain Analysis</h1>
-          <p className="text-scholar-gray-600 font-inter">Analysis mode: <span className="font-medium text-deep-blue">Sunni</span></p>
+          <h1 className="text-3xl font-bold font-lora text-deep-blue dark:text-blue-400 mb-2 tracking-wide">Hadith Chain Analysis</h1>
+          <p className="text-scholar-gray-600 dark:text-gray-400 font-inter">Analysis mode: <span className="font-medium text-deep-blue dark:text-blue-400">Sunni</span></p>
 
           {/* Decorative divider */}
           <div className="flex justify-start mt-6">
@@ -177,13 +177,13 @@ export default function AnalysisPage() {
           {/* Input Text */}
           <div className="lg:col-span-1">
             <Card variant="scholarly">
-              <h2 className="text-xl font-semibold font-lora text-deep-blue mb-4">Input Text</h2>
+              <h2 className="text-xl font-semibold font-lora text-deep-blue dark:text-blue-400 mb-4">Input Text</h2>
               <div className="space-y-4">
                 <textarea
                   value={hadithText}
                   onChange={(e) => setHadithText(e.target.value)}
                   placeholder="Enter the hadith text with its chain of narrators..."
-                  className="w-full h-32 px-4 py-3 bg-sage-25 border border-sage-100 rounded-lg focus:border-deep-blue focus:ring-2 focus:ring-deep-blue/20 transition-colors duration-200 resize-none text-sm text-scholar-gray-700 font-inter leading-relaxed"
+                  className="w-full h-32 px-4 py-3 bg-sage-25 dark:bg-gray-700 border border-sage-100 dark:border-gray-600 rounded-lg focus:border-deep-blue dark:focus:border-blue-400 focus:ring-2 focus:ring-deep-blue/20 dark:focus:ring-blue-400/20 transition-colors duration-200 resize-none text-sm text-scholar-gray-700 dark:text-gray-300 font-inter leading-relaxed"
                   dir="rtl"
                 />
                 <div className="flex gap-2">
@@ -205,16 +205,17 @@ export default function AnalysisPage() {
                   </Button>
                 </div>
               </div>
+              
             </Card>
 
             {/* Extraction Results */}
             {hadithText && (
               <Card variant="scholarly" className="mt-6">
                 <div className="flex items-center mb-4">
-                  <div className="bg-deep-blue/10 p-2 rounded-lg mr-3 border border-deep-blue/20">
-                    <UserIcon className="h-5 w-5 text-deep-blue" />
+                  <div className="bg-deep-blue/10 dark:bg-blue-400/10 p-2 rounded-lg mr-3 border border-deep-blue/20 dark:border-blue-400/20">
+                    <UserIcon className="h-5 w-5 text-deep-blue dark:text-blue-400" />
                   </div>
-                  <h2 className="text-xl font-semibold font-lora text-deep-blue">Extracted Narrators</h2>
+                  <h2 className="text-xl font-semibold font-lora text-deep-blue dark:text-blue-400">Extracted Narrators</h2>
                 </div>
 
                 <LoadingState isLoading={isExtracting} message="Extracting narrators..." />
@@ -230,9 +231,9 @@ export default function AnalysisPage() {
                   <div className="space-y-4">
                     {/* Sanad Chain */}
                     {extractionData.sanad_chain && (
-                      <div className="bg-sage-25 rounded-lg p-4 border border-sage-100">
-                        <h3 className="text-sm font-semibold text-deep-blue mb-2 font-inter">Identified Chain:</h3>
-                        <p className="text-scholar-gray-700 font-inter text-sm leading-relaxed">
+                      <div className="bg-sage-25 dark:bg-gray-700 rounded-lg p-4 border border-sage-100 dark:border-gray-600">
+                        <h3 className="text-sm font-semibold text-deep-blue dark:text-blue-400 mb-2 font-inter">Identified Chain:</h3>
+                        <p className="text-scholar-gray-700 dark:text-gray-300 font-inter text-sm leading-relaxed">
                           {extractionData.sanad_chain}
                         </p>
                       </div>
@@ -262,12 +263,12 @@ export default function AnalysisPage() {
 
                     {/* Chain Analysis Summary */}
                     {chainAnalysis && (
-                      <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                        <h3 className="text-sm font-semibold text-deep-blue mb-2 font-inter flex items-center">
+                      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                        <h3 className="text-sm font-semibold text-deep-blue dark:text-blue-400 mb-2 font-inter flex items-center">
                           <BeakerIcon className="h-4 w-4 mr-1" />
                           Chain Analysis Summary
                         </h3>
-                        <div className="text-sm text-scholar-gray-700 space-y-1">
+                        <div className="text-sm text-scholar-gray-700 dark:text-gray-300 space-y-1">
                           <div>Total Narrators: {chainAnalysis.metadata.total_narrators}</div>
                           <div>Successful Analyses: {chainAnalysis.metadata.successful_analyses}</div>
                           <div>Method: {chainAnalysis.metadata.analysis_method}</div>
@@ -277,16 +278,16 @@ export default function AnalysisPage() {
 
                     {/* Narrator List */}
                     <div>
-                      <h3 className="text-sm font-semibold text-deep-blue mb-3 font-inter">
+                      <h3 className="text-sm font-semibold text-deep-blue dark:text-blue-400 mb-3 font-inter">
                         Narrators ({extractionData.narrators.length}):
                       </h3>
                       <div className="space-y-2">
                         {extractionData.narrators.map((narrator: string, index: number) => (
                           <div 
                             key={index}
-                            className="flex items-center justify-between bg-white border border-sage-200 rounded-lg p-3 hover:shadow-sm transition-shadow"
+                            className="flex items-center justify-between bg-white dark:bg-gray-700 border border-sage-200 dark:border-gray-600 rounded-lg p-3 hover:shadow-sm transition-shadow"
                           >
-                            <span className="text-scholar-gray-700 font-inter font-medium">{narrator}</span>
+                            <span className="text-scholar-gray-700 dark:text-gray-300 font-inter font-medium">{narrator}</span>
                             <Button
                               onClick={() => handleAnalyzeNarrator(narrator)}
                               disabled={narratorAnalyses[narrator]?.isAnalyzing}
@@ -311,10 +312,10 @@ export default function AnalysisPage() {
             <Card variant="scholarly">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center">
-                  <div className="bg-deep-blue/10 p-2 rounded-lg mr-3 border border-deep-blue/20">
-                    <MagnifyingGlassIcon className="h-6 w-6 text-deep-blue" />
+                  <div className="bg-deep-blue/10 dark:bg-blue-400/10 p-2 rounded-lg mr-3 border border-deep-blue/20 dark:border-blue-400/20">
+                    <MagnifyingGlassIcon className="h-6 w-6 text-deep-blue dark:text-blue-400" />
                   </div>
-                  <h2 className="text-xl font-semibold font-lora text-deep-blue">Narrator Analysis Results</h2>
+                  <h2 className="text-xl font-semibold font-lora text-deep-blue dark:text-blue-400">Narrator Analysis Results</h2>
                 </div>
                 {Object.keys(narratorAnalyses).length > 0 && (
                   <Button

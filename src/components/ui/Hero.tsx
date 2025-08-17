@@ -30,10 +30,13 @@ export default function Hero({
   children,
 }: HeroProps) {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
-      {/* Existing background layers */}
-      <div className="absolute inset-0 bg-pattern-islamic opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-indigo-900/20"></div>
+    <section className="relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 
+                     bg-gradient-to-br from-deep-blue-900 via-deep-blue-800 to-deep-blue-900 
+                     dark:from-scholar-gray-900 dark:via-scholar-gray-800 dark:to-deep-blue-900">
+      {/* Background patterns and overlays */}
+      <div className="absolute inset-0 bg-pattern-islamic opacity-10 dark:opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-deep-blue-900/20 via-transparent to-deep-blue-900/20 
+                      dark:from-scholar-gray-900/30 dark:via-transparent dark:to-deep-blue-900/30"></div>
       
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center animate-text-reveal">
@@ -50,7 +53,7 @@ export default function Hero({
             <span className="text-white">{title}</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-stagger-2">
+          <p className="text-xl sm:text-2xl text-white/90 dark:text-scholar-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed animate-stagger-2">
             {subtitle}
           </p>
           

@@ -39,6 +39,7 @@
   --shadow-medium: 0 4px 6px -1px rgba(30, 58, 138, 0.1), 0 2px 4px -1px rgba(30, 58, 138, 0.06);
   --shadow-large: 0 10px 15px -3px rgba(30, 58, 138, 0.1), 0 4px 6px -2px rgba(30, 58, 138, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(30, 58, 138, 0.1), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(30, 58, 138, 0.25);
   --shadow-scholarly: 0 8px 32px rgba(30, 58, 138, 0.12), 0 2px 8px rgba(30, 58, 138, 0.08);
   --shadow-elegant: 0 12px 40px rgba(30, 58, 138, 0.15), 0 4px 16px rgba(30, 58, 138, 0.1);
   
@@ -46,6 +47,56 @@
   --pattern-primary: rgba(30, 58, 138, 0.015);
   --pattern-secondary: rgba(210, 180, 140, 0.05);
   --pattern-accent: rgba(5, 150, 105, 0.02);
+}
+
+/* Dark Mode Variables */
+.dark {
+  /* Core Color Palette - Dark Mode */
+  --color-primary: #60a5fa;          /* Softer blue for dark backgrounds */
+  --color-primary-light: #93c5fd;     /* Lighter blue for accents */
+  --color-primary-dark: #3b82f6;      /* Deeper blue for contrast */
+  --color-secondary: #e5e7eb;         /* Light grey for text */
+  --color-accent: #34d399;            /* Brighter green for dark mode visibility */
+  
+  /* Warm Scholar Tones - Dark Mode */
+  --color-warm-tan: #fbbf24;          /* Bright gold for visibility */
+  --color-warm-tan-light: #1f1611;    /* Dark warm background */
+  --color-warm-tan-dark: #d97706;     /* Darker amber tone */
+  --color-amber: #f59e0b;             /* Brighter amber for visibility */
+  --color-error: #f87171;             /* Softer red for dark mode */
+  
+  /* Background & Surface Colors - Dark Mode */
+  --color-background: #0f172a;        /* Deep dark blue-grey */
+  --color-background-secondary: #1e293b; /* Medium dark grey */
+  --color-background-tertiary: #334155;  /* Lighter dark grey */
+  --color-paper: #1a1f2e;             /* Dark paper tone with slight warmth */
+  --color-surface: #1e293b;           /* Card/surface background */
+  --color-border: #334155;            /* Dark border color */
+  
+  /* Text Colors - Dark Mode */
+  --color-text-primary: #f8fafc;      /* Almost white for primary text */
+  --color-text-secondary: #e2e8f0;    /* Light grey for secondary text */
+  --color-text-muted: #94a3b8;        /* Medium grey for muted text */
+  
+  /* Shadows with Dark Mode Styling */
+  --shadow-soft: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-scholarly: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-elegant: 0 12px 40px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.5);
+  
+  /* Geometric Pattern Variables - Dark Mode */
+  --pattern-primary: rgba(96, 165, 250, 0.03);
+  --pattern-secondary: rgba(251, 191, 36, 0.05);
+  --pattern-accent: rgba(52, 211, 153, 0.02);
+  --shadow-elegant: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+  
+  /* Dark Mode Pattern Variables */
+  --pattern-primary: rgba(96, 165, 250, 0.05);
+  --pattern-secondary: rgba(146, 64, 14, 0.08);
+  --pattern-accent: rgba(52, 211, 153, 0.05);
 }
 
 /* Light theme (default) */
@@ -88,6 +139,7 @@
   --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
   --shadow-scholarly: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-elegant: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
   
@@ -97,11 +149,17 @@
   --pattern-accent: rgba(52, 211, 153, 0.02);
 }
 
+/* Dark Mode Utility Classes */
+.dark-transition {
+  @apply transition-colors duration-300 ease-in-out;
+}
+
 /* Base styles with enhanced typography */
 html {
   scroll-behavior: smooth;
   font-size: 16px;
   line-height: 1.6;
+  transition: color-scheme 0.3s ease;
 }
 
 body {
@@ -114,6 +172,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
   letter-spacing: -0.01em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Enhanced Typography Classes */
@@ -221,14 +280,6 @@ blockquote {
     box-shadow: var(--shadow-medium);
   }
   
-  .scholarly-card {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    color: var(--color-text-primary);
-    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
-    box-shadow: var(--shadow-medium);
-  }
-  
   .card-elegant {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -317,11 +368,12 @@ blockquote {
     letter-spacing: -0.02em;
   }
   
+  .gradient-text-scholarly {
+    @apply bg-gradient-to-r from-deep-blue-800 to-deep-blue-600 dark:from-deep-blue-400 dark:to-deep-blue-300 bg-clip-text text-transparent;
+  }
+  
   .gradient-text-warm {
-    background: linear-gradient(135deg, var(--color-warm-tan-dark) 0%, var(--color-amber) 100%);
-    @apply bg-clip-text text-transparent;
-    font-family: 'Lora', serif;
-    font-weight: 600;
+    @apply bg-gradient-to-r from-warm-tan-700 to-amber-600 dark:from-warm-tan-400 dark:to-amber-400 bg-clip-text text-transparent;
   }
   
   /* Islamic Geometric Patterns */
@@ -427,13 +479,27 @@ blockquote {
   }
   
   .scholarly-card {
-    @apply bg-white rounded-xl border border-scholar-gray-100 p-6 transition-all duration-300 hover:shadow-lg;
+    @apply rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     box-shadow: var(--shadow-medium);
-    background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+  }
+  
+  .scholarly-card {
+    @apply bg-white dark:bg-scholar-gray-800 border border-sage-200 dark:border-scholar-gray-600 transition-all duration-300;
+    box-shadow: var(--shadow-scholarly);
+  }
+
+  .scholarly-card:hover {
+    @apply transform hover:-translate-y-0.5;
+    box-shadow: var(--shadow-elegant);
   }
   
   .scholarly-input {
-    @apply w-full px-4 py-3 rounded-lg border border-scholar-gray-300 focus:ring-2 focus:ring-deep-blue-600 focus:border-transparent transition-all duration-200 bg-white;
+    @apply w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-deep-blue-600 focus:border-transparent transition-all duration-200;
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
     font-family: 'Inter', sans-serif;
     box-shadow: var(--shadow-soft);
   }
@@ -442,179 +508,117 @@ blockquote {
     box-shadow: var(--shadow-medium), 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
   
-  /* Scholarly Button - Enhanced with Academic Elegance */
-  .scholarly-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    outline: none;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.01em;
-    min-height: 48px;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    box-shadow: var(--shadow-medium);
-    cursor: pointer;
-    text-decoration: none;
-    border: 1px solid;
-    font-size: 1rem;
-    line-height: 1.5;
+  /* Enhanced Button Styles with Dark Mode */
+  .btn-primary {
+    @apply bg-gradient-to-r from-deep-blue-700 to-deep-blue-800 hover:from-deep-blue-600 hover:to-deep-blue-700 
+           dark:from-deep-blue-600 dark:to-deep-blue-700 dark:hover:from-deep-blue-500 dark:hover:to-deep-blue-600
+           text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 
+           shadow-md hover:shadow-lg dark:shadow-lg dark:hover:shadow-xl
+           focus:outline-none focus:ring-2 focus:ring-deep-blue-500 focus:ring-offset-2 
+           dark:focus:ring-deep-blue-400 dark:focus:ring-offset-scholar-gray-800;
   }
   
-  /* Primary Scholarly Button */
-  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline) {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    color: white;
-    border-color: var(--color-primary-dark);
+  .btn-secondary {
+    @apply bg-white hover:bg-scholar-gray-50 dark:bg-scholar-gray-700 dark:hover:bg-scholar-gray-600
+           text-scholar-gray-700 dark:text-scholar-gray-200 border border-scholar-gray-300 dark:border-scholar-gray-600
+           font-semibold py-3 px-6 rounded-lg transition-all duration-200 
+           shadow-sm hover:shadow-md dark:shadow-md dark:hover:shadow-lg
+           focus:outline-none focus:ring-2 focus:ring-deep-blue-500 focus:ring-offset-2
+           dark:focus:ring-deep-blue-400 dark:focus:ring-offset-scholar-gray-800;
   }
   
-  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):hover {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-large);
+  .input-scholarly {
+    @apply w-full px-4 py-3 rounded-lg border border-scholar-gray-300 dark:border-scholar-gray-600
+           bg-white dark:bg-scholar-gray-700 text-scholar-gray-900 dark:text-scholar-gray-100
+           focus:ring-2 focus:ring-deep-blue-500 dark:focus:ring-deep-blue-400 
+           focus:border-transparent transition-all duration-200
+           placeholder-scholar-gray-400 dark:placeholder-scholar-gray-500;
   }
   
-  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-medium);
+  .textarea-scholarly {
+    @apply w-full px-4 py-3 rounded-lg border border-scholar-gray-300 dark:border-scholar-gray-600
+           bg-white dark:bg-scholar-gray-700 text-scholar-gray-900 dark:text-scholar-gray-100
+           focus:ring-2 focus:ring-deep-blue-500 dark:focus:ring-deep-blue-400 
+           focus:border-transparent transition-all duration-200 resize-none
+           placeholder-scholar-gray-400 dark:placeholder-scholar-gray-500;
   }
   
-  .scholarly-button:not(.scholarly-button-secondary):not(.scholarly-button-outline):focus {
-    box-shadow: var(--shadow-large), 0 0 0 3px rgba(59, 130, 246, 0.3);
-  }
-  
-  /* Secondary Scholarly Button */
-  .scholarly-button.scholarly-button-secondary {
-    background: linear-gradient(135deg, white 0%, var(--color-warm-tan-light) 100%);
-    color: var(--color-text-primary);
-    border-color: var(--color-warm-tan);
-  }
-  
-  .scholarly-button.scholarly-button-secondary:hover {
-    background: linear-gradient(135deg, var(--color-warm-tan-light) 0%, white 100%);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-large);
-    color: var(--color-primary);
-  }
-  
-  .scholarly-button.scholarly-button-secondary:active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-medium);
-  }
-  
-  .scholarly-button.scholarly-button-secondary:focus {
-    box-shadow: var(--shadow-large), 0 0 0 3px rgba(210, 180, 140, 0.3);
-  }
-  
-  /* Outline Scholarly Button */
-  .scholarly-button.scholarly-button-outline {
-    background: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-  }
-  
-  .scholarly-button.scholarly-button-outline:hover {
-    background: var(--color-primary);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-large);
-  }
-  
-  .scholarly-button.scholarly-button-outline:active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-medium);
-  }
-  
-  .scholarly-button.scholarly-button-outline:focus {
-    box-shadow: var(--shadow-large), 0 0 0 3px rgba(59, 130, 246, 0.3);
-  }
-  
-  /* Subtle scholarly pattern overlay */
-  .scholarly-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  /* Enhanced Background Patterns for Dark Mode */
+  .bg-pattern-scholarly {
     background-image: 
-      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px, 30px 30px;
-    opacity: 0.6;
-    pointer-events: none;
-    border-radius: inherit;
+      radial-gradient(circle at 25% 25%, rgba(30, 58, 138, 0.03) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(210, 180, 140, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px;
+  }
+
+  .dark .bg-pattern-scholarly {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(96, 165, 250, 0.05) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(251, 191, 36, 0.08) 1px, transparent 1px);
   }
   
-  /* Disabled state */
-  .scholarly-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important;
-    background: var(--color-text-muted) !important;
-    color: white !important;
-    border-color: var(--color-text-muted) !important;
+  /* Enhanced Feature Card Styles */
+  .feature-card {
+    @apply bg-white dark:bg-scholar-gray-800 border border-scholar-gray-200 dark:border-scholar-gray-600
+           rounded-xl p-6 transition-all duration-300 hover:shadow-lg dark:hover:shadow-2xl
+           hover:-translate-y-1 group;
   }
   
-  .scholarly-button:disabled:hover {
-    transform: none !important;
-    box-shadow: var(--shadow-soft) !important;
+  /* Enhanced Info Section Styles */
+  .info-section {
+    @apply bg-scholar-gray-50 dark:bg-scholar-gray-700 border border-scholar-gray-200 dark:border-scholar-gray-600
+           rounded-lg p-4 transition-all duration-300;
+  }
+
+  .info-section.variant-blue {
+    @apply bg-deep-blue-50 dark:bg-deep-blue-900/20 border-deep-blue-200 dark:border-deep-blue-700/50;
+  }
+
+  .info-section.variant-green {
+    @apply bg-muted-green-50 dark:bg-muted-green-900/20 border-muted-green-200 dark:border-muted-green-700/50;
+  }
+
+  .info-section.variant-tan {
+    @apply bg-warm-tan-50 dark:bg-warm-tan-900/20 border-warm-tan-200 dark:border-warm-tan-700/50;
+  }
+
+  .info-section.variant-orange {
+    @apply bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700/50;
   }
   
-  /* Size variations */
-  .scholarly-button.scholarly-button-sm {
-    padding: 8px 16px;
-    font-size: 0.875rem;
-    min-height: 36px;
+  /* Loading and State Components */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-b-2 border-deep-blue-600 dark:border-deep-blue-400;
+  }
+
+  .error-state {
+    @apply bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700/50 
+           text-red-800 dark:text-red-300 rounded-lg p-4;
   }
   
-  .scholarly-button.scholarly-button-lg {
-    padding: 16px 32px;
-    font-size: 1.125rem;
-    min-height: 56px;
+  /* Reliability Badge Styles */
+  .reliability-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-all duration-200;
   }
-  
-  .scholarly-button.scholarly-button-xl {
-    padding: 20px 40px;
-    font-size: 1.25rem;
-    min-height: 64px;
+
+  .reliability-badge.grade-sahih {
+    @apply bg-muted-green-100 dark:bg-muted-green-900/30 text-muted-green-800 dark:text-muted-green-300 
+           border border-muted-green-300 dark:border-muted-green-700;
   }
-  
-  /* Loading state */
-  .scholarly-button.scholarly-button-loading {
-    color: transparent !important;
-    pointer-events: none;
+
+  .reliability-badge.grade-hasan {
+    @apply bg-warm-tan-100 dark:bg-warm-tan-900/30 text-warm-tan-800 dark:text-warm-tan-300
+           border border-warm-tan-300 dark:border-warm-tan-700;
   }
-  
-  .scholarly-button.scholarly-button-loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+
+  .reliability-badge.grade-daif {
+    @apply bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300
+           border border-orange-300 dark:border-orange-700;
   }
-  
-  /* Icon spacing */
-  .scholarly-button svg {
-    margin-right: 8px;
-    margin-left: -2px;
-    flex-shrink: 0;
-  }
-  
-  .scholarly-button svg:last-child:first-child {
-    margin: 0;
+
+  .reliability-badge.grade-maudu {
+    @apply bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300
+           border border-red-300 dark:border-red-700;
   }
 }
 

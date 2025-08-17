@@ -69,3 +69,25 @@ export const STEPS: Step[] = [
     icon: DocumentTextIcon
   }
 ]
+
+// Add theme-aware color mapping for features
+export const FEATURE_COLORS = {
+  'deep-blue': {
+    light: 'text-deep-blue-600 bg-deep-blue-50 border-deep-blue-200',
+    dark: 'text-deep-blue-400 bg-deep-blue-900/20 border-deep-blue-700/50'
+  },
+  'muted-green': {
+    light: 'text-muted-green-600 bg-muted-green-50 border-muted-green-200',
+    dark: 'text-muted-green-400 bg-muted-green-900/20 border-muted-green-700/50'
+  },
+  'warm-tan': {
+    light: 'text-warm-tan-700 bg-warm-tan-50 border-warm-tan-200',
+    dark: 'text-warm-tan-400 bg-warm-tan-900/20 border-warm-tan-700/50'
+  }
+} as const
+
+// Theme-aware icon wrapper styles
+export const ICON_WRAPPER_CLASSES = {
+  base: 'p-3 rounded-lg transition-all duration-300 group-hover:scale-110',
+  colors: FEATURE_COLORS
+} as const
