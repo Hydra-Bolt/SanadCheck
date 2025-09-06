@@ -3,7 +3,9 @@ import { Inter, Lora } from 'next/font/google'
 import Link from 'next/link'
 import { MagnifyingGlassIcon, BookOpenIcon, QuestionMarkCircleIcon, InformationCircleIcon, Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import { AuthProvider } from '@/contexts/AuthContext'
 import ThemeToggle from '@/components/ThemeToggle'
+import { UserMenu } from '@/components/auth/UserMenu'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const lora = Lora({ subsets: ['latin'], variable: '--font-lora' })
@@ -23,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className={`h-full ${inter.variable} ${lora.variable}`}>
       <body className={`h-full font-sans bg-scholar-cream dark:bg-scholar-gray-900 text-scholar-gray-800 dark:text-scholar-gray-100 transition-colors duration-300`}>
         <ThemeProvider defaultTheme="light">
+          <AuthProvider>
           {/* Navigation Header */}
           <nav className="bg-white/95 dark:bg-scholar-gray-800/95 backdrop-blur-sm border-b border-scholar-gray-200 dark:border-scholar-gray-700 sticky top-0 z-50 shadow-soft dark:shadow-xl">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,6 +80,9 @@ export default function RootLayout({
                 
                 {/* Theme Toggle */}
                 <ThemeToggle />
+                
+                {/* User Menu */}
+                <UserMenu />
               </div>
 
               {/* Mobile menu button */}
@@ -108,6 +114,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

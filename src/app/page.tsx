@@ -1,36 +1,81 @@
 'use client'
 
 import Link from 'next/link'
-import { BookOpenIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import { BookOpenIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { 
   Hero, 
   Section, 
   SectionHeader, 
   FeatureCard, 
   StepCard, 
-  Button 
+  Button,
+  IconWrapper
 } from '@/components/ui'
 import { FEATURES, STEPS } from '@/constants/homepage'
+import { useAuth } from '@/contexts/AuthContext'
+import { AuthModal } from '@/components/auth/AuthModal'
 
 export default function HomePage() {
+  const { isAuthenticated, user } = useAuth()
+  const [showAuthModal, setShowAuthModal] = useState(false)
+
+  const handlePrimaryAction = () => {
+    if (isAuthenticated) {
+      // User is authenticated, go to analysis page
+      window.location.href = '/analysis'
+    } else {
+      // User not authenticated, show login modal
+      setShowAuthModal(true)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Hero Section */}
-      <Hero
-        title="SanadCheck"
-        subtitle="Authenticate hadith chains with AI-powered analysis using traditional Islamic scholarship"
-        icon={BookOpenIcon}
-        primaryAction={{
-          text: "Try Analysis Tool",
-          href: "/analysis",
-          
-        }}
-        secondaryAction={{
-          text: "Learn Methodology",
-          href: "/methodology"
-        }}
-      />
+      <div className="relative overflow-hidden bg-gradient-to-br from-scholar-cream via-deep-blue-50 to-scholar-cream dark:from-scholar-gray-900 dark:via-deep-blue-900/20 dark:to-scholar-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+          <div className="text-center">
+            <IconWrapper
+              icon={BookOpenIcon}
+              size="xl"
+              variant="primary"
+              className="mx-auto mb-8"
+            />
+            
+            <h1 className="text-4xl md:text-6xl font-bold font-serif mb-6">
+              <span className="bg-gradient-to-r from-deep-blue-900 to-deep-blue-700 dark:from-deep-blue-400 dark:to-deep-blue-300 bg-clip-text text-transparent">
+                SanadCheck
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-scholar-gray-600 dark:text-scholar-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              {isAuthenticated 
+                ? `Welcome back, ${user?.full_name || user?.username}! Continue your hadith analysis.`
+                : "Authenticate hadith chains with AI-powered analysis using traditional Islamic scholarship"
+              }
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button 
+                variant="cta" 
+                size="lg"
+                onClick={handlePrimaryAction}
+                className="min-w-[200px]"
+              >
+                {isAuthenticated ? "Continue Analysis" : "Try Analysis Tool"}
+                <ArrowRightIcon className="ml-2 h-5 w-5" />
+              </Button>
+              
+              <Link href={isAuthenticated ? "/dashboard" : "/methodology"}>
+                <Button variant="outline" size="lg" className="min-w-[200px]">
+                  {isAuthenticated ? "View Dashboard" : "Learn Methodology"}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
       
       {/* Features Section */}
       <Section background="gray">
@@ -96,6 +141,13 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
+      
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        defaultMode="login"
+      />
     </div>
   )
 }

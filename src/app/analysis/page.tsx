@@ -26,12 +26,14 @@ import {
   EmptyState, 
   NarratorAnalysisCard 
 } from '@/components/ui'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface NarratorAnalysis extends AnalyzeNarratorResponse {
   isAnalyzing?: boolean
 }
 
 export default function AnalysisPage() {
+  const { isAuthenticated, isLoading: authLoading } = useAuth()
   const [hadithText, setHadithText] = useState('')
   const [extractionData, setExtractionData] = useState<ExtractNarratorsResponse | null>(null)
   const [narratorAnalyses, setNarratorAnalyses] = useState<Record<string, NarratorAnalysis>>({})
@@ -60,6 +62,11 @@ export default function AnalysisPage() {
   }, [hadithText])
 
   const handleExtractNarrators = async () => {
+    if (!isAuthenticated) {
+      setExtractionError('Please log in to analyze hadith texts')
+      return
+    }
+
     setIsExtracting(true)
     setExtractionError(null)
     
@@ -74,6 +81,18 @@ export default function AnalysisPage() {
   }
 
   const handleAnalyzeNarrator = async (narratorName: string) => {
+    if (!isAuthenticated) {
+      setNarratorAnalyses(prev => ({
+        ...prev,
+        [narratorName]: { 
+          ...prev[narratorName],
+          success: false,
+          message: 'Please log in to analyze narrators'
+        }
+      }))
+      return
+    }
+
     // Add to order if not already present
     setNarratorOrder(prev => {
       if (!prev.includes(narratorName)) {
@@ -108,6 +127,11 @@ export default function AnalysisPage() {
 
   const handleAnalyzeChain = async () => {
     if (!extractionData?.narrators) return
+    
+    if (!isAuthenticated) {
+      setChainAnalysisError('Please log in to analyze chains')
+      return
+    }
 
     setIsAnalyzingChain(true)
     setChainAnalysisError(null)
@@ -164,7 +188,18 @@ export default function AnalysisPage() {
             Back to Home
           </Link>
           <h1 className="text-3xl font-bold font-lora text-deep-blue dark:text-blue-400 mb-2 tracking-wide">Hadith Chain Analysis</h1>
-          <p className="text-scholar-gray-600 dark:text-gray-400 font-inter">Analysis mode: <span className="font-medium text-deep-blue dark:text-blue-400">Sunni</span></p>
+          <div className="flex items-center space-x-4">
+            <p className="text-scholar-gray-600 dark:text-gray-400 font-inter">Analysis mode: <span className="font-medium text-deep-blue dark:text-blue-400">Sunni</span></p>
+            {authLoading ? (
+              <span className="text-sm text-scholar-gray-500 dark:text-gray-500">Checking authentication...</span>
+            ) : (
+              <div className={`text-sm px-2 py-1 rounded-full ${isAuthenticated 
+                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' 
+                : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'}`}>
+                {isAuthenticated ? 'Authenticated' : 'Please log in'}
+              </div>
+            )}
+          </div>
 
           {/* Decorative divider */}
           <div className="flex justify-start mt-6">
@@ -189,13 +224,13 @@ export default function AnalysisPage() {
                 <div className="flex gap-2">
                   <Button
                     onClick={handleExtractNarrators}
-                    disabled={!hadithText.trim() || isExtracting}
+                    disabled={!hadithText.trim() || isExtracting || !isAuthenticated}
                     loading={isExtracting}
                     icon={MagnifyingGlassIcon}
                     iconPosition="left"
                     fullWidth
                   >
-                    {isExtracting ? 'Analyzing...' : 'Analyze'}
+                    {isExtracting ? 'Analyzing...' : !isAuthenticated ? 'Login Required' : 'Analyze'}
                   </Button>
                   <Button
                     onClick={() => setHadithText('')}
@@ -243,14 +278,14 @@ export default function AnalysisPage() {
                     <div className="flex gap-2">
                       <Button
                         onClick={handleAnalyzeChain}
-                        disabled={isAnalyzingChain}
+                        disabled={isAnalyzingChain || !isAuthenticated}
                         loading={isAnalyzingChain}
                         icon={LinkIcon}
                         iconPosition="left"
                         variant="cta"
                         size="sm"
                       >
-                        Analyze Full Chain
+                        {!isAuthenticated ? 'Login Required' : 'Analyze Full Chain'}
                       </Button>
                     </div>
 
@@ -290,12 +325,12 @@ export default function AnalysisPage() {
                             <span className="text-scholar-gray-700 dark:text-gray-300 font-inter font-medium">{narrator}</span>
                             <Button
                               onClick={() => handleAnalyzeNarrator(narrator)}
-                              disabled={narratorAnalyses[narrator]?.isAnalyzing}
+                              disabled={narratorAnalyses[narrator]?.isAnalyzing || !isAuthenticated}
                               loading={narratorAnalyses[narrator]?.isAnalyzing}
                               size="sm"
                               variant="primary"
                             >
-                              Analyze
+                              {!isAuthenticated ? 'Login Required' : 'Analyze'}
                             </Button>
                           </div>
                         ))}
