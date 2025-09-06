@@ -1,24 +1,10 @@
 import './globals.css'
-import { Inter, Lora } from 'next/font/google'
 import Link from 'next/link'
 import { MagnifyingGlassIcon, BookOpenIcon, QuestionMarkCircleIcon, InformationCircleIcon, Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import ThemeToggle from '@/components/ThemeToggle'
 import { UserMenu } from '@/components/auth/UserMenu'
-
-const inter = Inter({ 
-  subsets: ['latin'], 
-  variable: '--font-inter',
-  display: 'swap',
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
-})
-const lora = Lora({ 
-  subsets: ['latin'], 
-  variable: '--font-lora',
-  display: 'swap',
-  fallback: ['Georgia', 'Times New Roman', 'serif']
-})
 
 export const metadata = {
   title: 'SanadCheck - Hadith Chain Analysis Tool',
@@ -32,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`h-full ${inter.variable} ${lora.variable}`}>
+    <html lang="en" className="h-full">
       <body className={`h-full font-sans bg-scholar-cream dark:bg-scholar-gray-900 text-scholar-gray-800 dark:text-scholar-gray-100 transition-colors duration-300`}>
         <ThemeProvider defaultTheme="light">
           <AuthProvider>

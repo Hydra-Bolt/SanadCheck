@@ -6,11 +6,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        'serif': ['Lora', 'Georgia', 'Times New Roman', 'serif'], 
+        'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+        'serif': ['Georgia', 'Times New Roman', 'Times', 'serif'], 
         'arabic': ['Amiri', 'Noto Sans Arabic', 'serif'],
-        'inter': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        'lora': ['var(--font-lora)', 'Lora', 'Georgia', 'serif'],
+        'inter': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'lora': ['Georgia', 'Times New Roman', 'Times', 'serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5' }],
