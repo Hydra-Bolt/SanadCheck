@@ -7,8 +7,18 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import ThemeToggle from '@/components/ThemeToggle'
 import { UserMenu } from '@/components/auth/UserMenu'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const lora = Lora({ subsets: ['latin'], variable: '--font-lora' })
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-inter',
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+})
+const lora = Lora({ 
+  subsets: ['latin'], 
+  variable: '--font-lora',
+  display: 'swap',
+  fallback: ['Georgia', 'Times New Roman', 'serif']
+})
 
 export const metadata = {
   title: 'SanadCheck - Hadith Chain Analysis Tool',

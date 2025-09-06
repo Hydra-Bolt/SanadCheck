@@ -1,7 +1,6 @@
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
-import { SessionsList } from '@/components/auth/SessionsList';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { AuthModal } from '@/components/auth/AuthModal';
@@ -98,68 +97,137 @@ export default function DashboardPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Session Management */}
-            <div>
-              <SessionsList />
-            </div>
-
-            {/* Analysis History */}
+            {/* Narrator Verification History */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Recent Activity
+                Narrator Verification History
               </h3>
               
               {loadingData ? (
                 <Card className="text-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                  <p className="mt-4 text-gray-500 dark:text-gray-400">Loading activity...</p>
+                  <p className="mt-4 text-gray-500 dark:text-gray-400">Loading extractions...</p>
                 </Card>
               ) : (
                 <div className="space-y-4">
                   {/* Extractions Summary */}
                   <Card className="p-4">
                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">
-                      Narrator Extractions
+                      Total Extractions
                     </h4>
                     <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                       {extractions.length}
                     </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Total hadith texts processed
+                      Hadith texts processed for narrator extraction
                     </p>
                   </Card>
 
+                  {/* Recent Extractions */}
+                  {extractions.length > 0 ? (
+                    <Card className="p-4">
+                      <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                        Recent Extractions
+                      </h4>
+                      <div className="space-y-3 max-h-64 overflow-y-auto">
+                        {extractions.slice(0, 5).map((extraction) => (
+                          <div key={extraction.id} className="border-l-4 border-blue-200 dark:border-blue-700 pl-3 py-2">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                              {extraction.hadith_text.substring(0, 120)}...
+                            </p>
+                            <div className="flex items-center justify-between mt-1">
+                              <p className="text-xs text-gray-500 dark:text-gray-500">
+                                {new Date(extraction.created_at).toLocaleDateString()}
+                              </p>
+                              <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">
+                                Extraction
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </Card>
+                  ) : (
+                    <Card className="p-6 text-center">
+                      <div className="text-gray-400 dark:text-gray-500 mb-2">
+                        <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-500 dark:text-gray-400">No extractions yet</p>
+                      <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+                        Start by analyzing some hadith texts
+                      </p>
+                    </Card>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Chain Analysis History */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Chain Analysis History
+              </h3>
+              
+              {loadingData ? (
+                <Card className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto"></div>
+                  <p className="mt-4 text-gray-500 dark:text-gray-400">Loading analyses...</p>
+                </Card>
+              ) : (
+                <div className="space-y-4">
                   {/* Analyses Summary */}
                   <Card className="p-4">
                     <h4 className="font-medium text-gray-900 dark:text-white mb-2">
-                      Chain Analyses
+                      Total Analyses
                     </h4>
                     <p className="text-2xl font-bold text-green-600 dark:text-green-400">
                       {analyses.length}
                     </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Comprehensive analyses completed
+                      Comprehensive chain analyses completed
                     </p>
                   </Card>
 
-                  {/* Recent Extractions */}
-                  {extractions.length > 0 && (
+                  {/* Recent Analyses */}
+                  {analyses.length > 0 ? (
                     <Card className="p-4">
                       <h4 className="font-medium text-gray-900 dark:text-white mb-3">
-                        Recent Extractions
+                        Recent Analyses
                       </h4>
-                      <div className="space-y-2">
-                        {extractions.slice(0, 3).map((extraction) => (
-                          <div key={extraction.id} className="border-l-4 border-blue-200 pl-3">
-                            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
-                              {extraction.hadith_text.substring(0, 100)}...
+                      <div className="space-y-3 max-h-64 overflow-y-auto">
+                        {analyses.slice(0, 5).map((analysis) => (
+                          <div key={analysis.id} className="border-l-4 border-green-200 dark:border-green-700 pl-3 py-2">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                              Analysis #{analysis.id}
                             </p>
-                            <p className="text-xs text-gray-500 dark:text-gray-500">
-                              {new Date(extraction.created_at).toLocaleDateString()}
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                              Chain reliability assessment completed
                             </p>
+                            <div className="flex items-center justify-between mt-1">
+                              <p className="text-xs text-gray-500 dark:text-gray-500">
+                                {new Date(analysis.created_at).toLocaleDateString()}
+                              </p>
+                              <span className="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">
+                                Analysis
+                              </span>
+                            </div>
                           </div>
                         ))}
                       </div>
+                    </Card>
+                  ) : (
+                    <Card className="p-6 text-center">
+                      <div className="text-gray-400 dark:text-gray-500 mb-2">
+                        <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-500 dark:text-gray-400">No analyses yet</p>
+                      <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+                        Start by analyzing some hadith chains
+                      </p>
                     </Card>
                   )}
                 </div>
@@ -167,36 +235,64 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Account Info */}
+          {/* Account Information */}
           <div className="mt-8">
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
                 Account Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Full Name
                   </label>
-                  <p className="text-gray-900 dark:text-white">{user?.full_name}</p>
+                  <p className="text-gray-900 dark:text-white font-medium">
+                    {user?.full_name || 'Not provided'}
+                  </p>
                 </div>
-                <div>
+                <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Username
                   </label>
-                  <p className="text-gray-900 dark:text-white">{user?.username}</p>
+                  <p className="text-gray-900 dark:text-white font-medium">
+                    {user?.username}
+                  </p>
                 </div>
-                <div>
+                <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Email
+                    Email Address
                   </label>
-                  <p className="text-gray-900 dark:text-white">{user?.email}</p>
+                  <p className="text-gray-900 dark:text-white font-medium">
+                    {user?.email}
+                  </p>
                 </div>
-                <div>
+                <div className="space-y-1">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Role
+                    Account Role
                   </label>
-                  <p className="text-gray-900 dark:text-white capitalize">{user?.role}</p>
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 capitalize">
+                    {user?.role}
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Account Status
+                  </label>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    user?.is_active 
+                      ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                      : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                  }`}>
+                    {user?.is_active ? 'Active' : 'Inactive'}
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    User ID
+                  </label>
+                  <p className="text-gray-900 dark:text-white font-mono text-sm">
+                    {user?.id}
+                  </p>
                 </div>
               </div>
             </Card>

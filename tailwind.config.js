@@ -9,6 +9,8 @@ module.exports = {
         'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         'serif': ['Lora', 'Georgia', 'Times New Roman', 'serif'], 
         'arabic': ['Amiri', 'Noto Sans Arabic', 'serif'],
+        'inter': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        'lora': ['var(--font-lora)', 'Lora', 'Georgia', 'serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5' }],
