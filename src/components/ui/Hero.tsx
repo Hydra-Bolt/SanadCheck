@@ -57,11 +57,11 @@ export default function Hero({
       className="relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 
                      bg-gradient-to-br from-deep-blue-900 via-deep-blue-800 to-deep-blue-900 
                      dark:from-scholar-gray-900 dark:via-scholar-gray-800 dark:to-deep-blue-900
-                     group">
+                     hero-section">
       {/* Background image with spotlight effect */}
       <div 
         ref={spotlightRef}
-        className="absolute inset-0 hero-spotlight"
+        className="hero-spotlight"
         style={{
           backgroundImage: "url('/hero_bg.png')"
         }}>

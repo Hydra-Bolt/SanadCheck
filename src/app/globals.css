@@ -932,41 +932,39 @@ a:focus-visible {
 .hero-spotlight {
   --mouse-x: 50%;
   --mouse-y: 50%;
-  position: relative;
+  position: absolute;
+  inset: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.hero-spotlight::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: inherit;
-  background-size: inherit;
-  background-position: inherit;
-  background-repeat: inherit;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Hide the entire image by default */
+  opacity: 0;
+  
+  /* Apply the spotlight mask directly to the element */
   mask-image: radial-gradient(
-    circle at var(--mouse-x) var(--mouse-y),
+    circle 200px at var(--mouse-x) var(--mouse-y),
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.9) 15%,
-    rgba(0,0,0,0.4) 30%,
-    rgba(0,0,0,0) 45%
+    rgba(0,0,0,0.9) 30%,
+    rgba(0,0,0,0.3) 60%,
+    rgba(0,0,0,0) 100%
   );
   -webkit-mask-image: radial-gradient(
-    circle at var(--mouse-x) var(--mouse-y),
+    circle 200px at var(--mouse-x) var(--mouse-y),
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.9) 15%,
-    rgba(0,0,0,0.4) 30%,
-    rgba(0,0,0,0) 45%
+    rgba(0,0,0,0.9) 30%,
+    rgba(0,0,0,0.3) 60%,
+    rgba(0,0,0,0) 100%
   );
-  opacity: 0;
+  
   transition: opacity 0.4s ease-out;
-  pointer-events: none;
 }
 
-.hero-spotlight:hover::before {
-  opacity: 1;
+/* Show the spotlight effect on hover */
+.hero-section:hover .hero-spotlight {
+  opacity: 0.6;
 }
 
 /* Print styles */
