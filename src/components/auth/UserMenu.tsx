@@ -14,15 +14,6 @@ export function UserMenu({ className = '' }: UserMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  if (!isAuthenticated || !user) {
-    return null;
-  }
-
-  const handleLogout = async () => {
-    await logout();
-    setIsDropdownOpen(false);
-  };
-
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -36,6 +27,15 @@ export function UserMenu({ className = '' }: UserMenuProps) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  if (!isAuthenticated || !user) {
+    return null;
+  }
+
+  const handleLogout = async () => {
+    await logout();
+    setIsDropdownOpen(false);
+  };
 
   // Get user initials for avatar
   const getInitials = (name: string) => {
