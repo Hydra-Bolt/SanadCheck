@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import IconWrapper from './IconWrapper'
 import Button from './Button'
 import Link from 'next/link'
@@ -29,12 +29,46 @@ export default function Hero({
   icon: HeroIcon = BookOpenIcon,
   children,
 }: HeroProps) {
+  const heroRef = useRef<HTMLElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (heroRef.current && spotlightRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        spotlightRef.current.style.setProperty('--mouse-x', `${x}%`);
+        spotlightRef.current.style.setProperty('--mouse-y', `${y}%`);
+      }
+    };
+
+    const heroElement = heroRef.current;
+    if (heroElement) {
+      heroElement.addEventListener('mousemove', handleMouseMove);
+      return () => heroElement.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
+
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 
+    <section 
+      ref={heroRef}
+      className="relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 
                      bg-gradient-to-br from-deep-blue-900 via-deep-blue-800 to-deep-blue-900 
-                     dark:from-scholar-gray-900 dark:via-scholar-gray-800 dark:to-deep-blue-900">
+                     dark:from-scholar-gray-900 dark:via-scholar-gray-800 dark:to-deep-blue-900
+                     group">
+      {/* Background image with spotlight effect */}
+      <div 
+        ref={spotlightRef}
+        className="absolute inset-0 hero-spotlight"
+        style={{
+          backgroundImage: "url('/hero_bg.png')"
+        }}>
+      </div>
+      
       {/* Background patterns and overlays */}
-      <div className="absolute inset-0 bg-pattern-islamic opacity-10 dark:opacity-20"></div>
+      <div className="absolute inset-0 bg-pattern-scholarly opacity-10 dark:opacity-20"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-deep-blue-900/20 via-transparent to-deep-blue-900/20 
                       dark:from-scholar-gray-900/30 dark:via-transparent dark:to-deep-blue-900/30"></div>
       
@@ -59,26 +93,39 @@ export default function Hero({
           
           <div className="divider-pattern w-32 mx-auto mb-8 animate-stagger-3"></div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-stagger-4">
-            {primaryAction && (
-              <Button
-                onClick={() => window.location.href = primaryAction.href}
-                variant="primary"
-                icon={ArrowRightIcon}
-                iconPosition="right"
-                className="group"
-              >
-                {primaryAction.text}
-              </Button>
-            )}
-            {secondaryAction && (
-              <Link href={secondaryAction.href} className="btn-secondary">
-                {secondaryAction.text}
-              </Link>
-            )}
-          </div>
+          {/* Render default buttons only if no children are provided */}
+          {!children && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-stagger-4">
+              {primaryAction && (
+                <Button
+                  onClick={() => window.location.href = primaryAction.href}
+                  variant="primary"
+                  icon={ArrowRightIcon}
+                  iconPosition="right"
+                  className="group"
+                >
+                  {primaryAction.text}
+                </Button>
+              )}
+              {secondaryAction && (
+                <Link href={secondaryAction.href}>
+                  <Button
+                    variant="secondary"
+                    className="group"
+                  >
+                    {secondaryAction.text}
+                  </Button>
+                </Link>
+              )}
+            </div>
+          )}
           
-          {children}
+          {/* Render custom children if provided */}
+          {children && (
+            <div className="animate-stagger-4">
+              {children}
+            </div>
+          )}
         </div>
       </div>
     </section>
